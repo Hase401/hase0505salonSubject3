@@ -18,26 +18,32 @@ class ViewController: UIViewController {
     @IBOutlet private weak var resultNumberLabel: UILabel!
     
     @IBAction private func addNumber(_ sender: UIButton) {
-        var number1 = Int(inputedNumberTextField1.text!) ?? 0
-        var number2 = Int(inputedNumberTextField2.text!) ?? 0
-        let resultNumber: Int
-        
-        if (changedSingSwitch1.isOn) {
-            number1 = -number1
+        let number1 = Int(inputedNumberTextField1.text!) ?? 0
+        let number2 = Int(inputedNumberTextField2.text!) ?? 0
+
+        let signedNumber1: Int
+        if changedSingSwitch1.isOn {
+            signedNumber1 = -number1
+        } else {
+            signedNumber1 = number1
         }
-        if (changedSingSwitch2.isOn) {
-            number2 = -number2
+
+        let signedNumber2: Int
+        if changedSingSwitch2.isOn {
+            signedNumber2 = -number2
+        } else {
+            signedNumber2 = number2
         }
-        resultNumber = number1 + number2
-        
-        changedNumberLabel1.text = "\(number1)"
-        changedNumberLabel2.text = "\(number2)"
+
+        changedNumberLabel1.text = "\(signedNumber1)"
+        changedNumberLabel2.text = "\(signedNumber2)"
+
+        let resultNumber = signedNumber1 + signedNumber2
         resultNumberLabel.text = "\(resultNumber)"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         inputedNumberTextField1.keyboardType = .numberPad
         inputedNumberTextField2.keyboardType = .numberPad
